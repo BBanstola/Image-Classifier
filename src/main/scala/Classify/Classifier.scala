@@ -1,12 +1,13 @@
+package Classify
+
+import java.awt.Color
+import java.awt.image.{BufferedImage, Raster}
 import java.io.File
 import javax.imageio.ImageIO
-import java.awt.Color
-import java.awt.image.BufferedImage
-import java.awt.image.Raster
 
 object Classifier {
 
-  def pixels2gray(red: Int, green: Int, blue: Int): Int = ((0.21 * red) + (0.72 * green) + (0.07 * blue)).toInt
+  def pixels2gray(red: Int, green: Int, blue: Int): Int = ((0.30 * red) + (0.59 * green) + (0.11 * blue)).toInt
 
   def makeGray(img: BufferedImage): BufferedImage = {
     for {w1 <- (0 until img.getWidth).toVector
