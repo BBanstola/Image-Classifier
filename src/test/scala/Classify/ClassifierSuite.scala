@@ -12,6 +12,7 @@ class FunSetSuite extends FunSuite {
 
 import Classify.Classifier._
 
+  // reading two images, perfectly black and perfectly white for testing purpose
   val p1 = ImageIO.read(new File("dark.jpg"))
   val p2 = ImageIO.read(new File("bright.jpg"))
 
