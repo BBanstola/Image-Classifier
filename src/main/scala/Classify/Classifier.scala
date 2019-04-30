@@ -42,10 +42,9 @@ object Classifier {
   def getListOfFiles(dir: String): List[File] = {                   // get all files from a directory, for reading multiple files
     val d = new File(dir)
     if (d.exists && d.isDirectory) {
-      d.listFiles.filter(_.isFile).toList
+      d.listFiles.filter{ f => f.isFile && (f.getName.endsWith(".png") || f.getName.endsWith(".jpg"))}.toList
     } else {
       List[File]()
     }
   }
 }
-

@@ -14,7 +14,7 @@ object Main {
 
     val files = getListOfFiles(config.getString("Source"))         // getting files from the source directory
 
-    val valid = List("jpg", "jpeg", "png", "bmp")                 // List of file extensions for validating ; add new values as per your requirements
+     val valid = List("jpg" ,"png")                 // List of file extensions for validating   ; add new values as per your requirements
 
     for (file <- files) {                                           // traversing each files from the source location
 
