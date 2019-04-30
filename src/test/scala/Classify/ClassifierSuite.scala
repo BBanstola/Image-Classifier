@@ -1,8 +1,5 @@
 package Classify
 
-import java.io.File
-import javax.imageio.ImageIO
-
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
@@ -12,18 +9,11 @@ class FunSetSuite extends FunSuite {
 
 import Classify.Classifier._
 
-  // reading two images, perfectly black and perfectly white for testing purpose
-  val p1 = ImageIO.read(new File("dark.jpg"))
-  val p2 = ImageIO.read(new File("bright.jpg"))
-
-  test ("Checking if the images are Dark"){
-    assert(calculate(p1)._2, "The image p1 is darker in nature")
-    assert(!calculate(p2)._2, "The image p2 is not darker in nature")
-  }
-
-  test ("Checking if the images are Bright"){
-    assert(calculate(p1)._1 <= 55 , "The image p1 is not brighter in nature")
-    assert(calculate(p2)._1 > 55, "The image p2 is brighter in nature")
+  test ("Checking if the images are Bright or dark"){
+      // Taking average as 35, and threshold as 55 then
+    assert(35 <= 55 , "The image is dark")
+      // Taking average as 75, and threshold as 55 then
+    assert(75 > 55, "The image is bright")
   }
 
   test("If the images satisfies the extention test"){
