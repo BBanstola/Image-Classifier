@@ -10,9 +10,9 @@ object Main {
 
     val config = ConfigFactory.load()
 
-    val destinationLocation = config.getString("Destination")      // Output Directory ; set new src/main/resources/from application.conf
+    val destinationLocation = config.getString("image.destination")      // Output Directory ; set new src/main/resources/from application.conf
 
-    val files = getListOfFiles(config.getString("Source"))         // getting files from the source directory
+    val files = getListOfFiles(config.getString("image.source"))         // getting files from the source directory
 
     //val valid = List("jpg" ,"png")                 // List of file extensions for validating   ; add new values as per your requirements
 
@@ -26,7 +26,7 @@ object Main {
 
         val photo2 = makeGray(photo1)                               // grayscale conversion stored
 
-        if (calculate(photo2)<config.getInt("threshold")) {                                 // grayscaled image passed to calculate function
+        if (calculate(photo2)<config.getInt("image.threshold")) {                                 // grayscaled image passed to calculate function
 
           // if  avg <= threshold ; writing image in the destination folder by name_dark_avg
           ImageIO.write(ImageIO.read(file), "jpg", new java.io.File(destinationLocation + file.getName.take(file.getName.lastIndexOf('.')) + "_dark_" + calculate(photo2) + ".jpg"))
