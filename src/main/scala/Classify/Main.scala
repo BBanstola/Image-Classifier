@@ -14,11 +14,13 @@ object Main {
 
     val files = getListOfFiles(config.getString("Source"))         // getting files from the source directory
 
-     val valid = List("jpg" ,"png")                 // List of file extensions for validating   ; add new values as per your requirements
+    //val valid = List("jpg" ,"png")                 // List of file extensions for validating   ; add new values as per your requirements
 
     for (file <- files) {                                           // traversing each files from the source location
 
-      if (valid contains file.getName.split('.')(1).toString) {     // checking if the file's extension is present in the list valid or not
+      //if (valid contains file.getName.split('.')(1).toString) {     // checking if the file's extension is present in the list valid or not
+
+//      if (file.getName.endsWith(".png") || file.getName.endsWith(".jpg")){
 
         val photo1 = ImageIO.read(file)                             // reading each file
 
@@ -27,13 +29,13 @@ object Main {
         if (calculate(photo2)<config.getInt("threshold")) {                                 // grayscaled image passed to calculate function
 
           // if  avg <= threshold ; writing image in the destination folder by name_dark_avg
-          ImageIO.write(ImageIO.read(file), "jpg", new java.io.File(destinationLocation + file.getName.split('.')(0) + "_dark_" + calculate(photo2) + ".jpg"))
+          ImageIO.write(ImageIO.read(file), "jpg", new java.io.File(destinationLocation + file.getName.take(file.getName.lastIndexOf('.')) + "_dark_" + calculate(photo2) + ".jpg"))
         } else {
           // if avg > threshold ; writing image in the destination folder by name_bright_avg
-          ImageIO.write(ImageIO.read(file), "jpg", new java.io.File(destinationLocation + file.getName.split('.')(0) + "_bright_" + calculate(photo2) + ".jpg"))
+          ImageIO.write(ImageIO.read(file), "jpg", new java.io.File(destinationLocation + file.getName.take(file.getName.lastIndexOf('.')) + "_bright_" + calculate(photo2) + ".jpg"))
         }
-      }
-      else println(file.getName + " is not of an image file.")    // In case the extension validation fails, console returns the print statement
+
+      //else println(file.getName + " is not of an image file.")    // In case the extension validation fails, console returns the print statement
     }
   }
 
